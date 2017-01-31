@@ -75,7 +75,7 @@ Kitematic uses sh for the Exec function. This can cause unwanted behavior, such 
 
 If you want your bash shell to be the default shell for when you 'exec' into the container, then in Settings > Advanced, simply add an entry for SHELL with a value of /bin/bash. [[1]]( https://github.com/docker/kitematic/issues/1022)
 
-Note that Windows containers do not have sh so this. (Open issue: https://github.com/docker/kitematic/issues/2166).
+Note that Windows containers do not have sh so this may still be an issue without a workaround. (Open issue: https://github.com/docker/kitematic/issues/2166).
 
 ### 403 Errors
 
