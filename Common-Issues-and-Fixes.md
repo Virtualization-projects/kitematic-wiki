@@ -69,8 +69,13 @@ TL;DR:
 4. Enable "Virtualbox NDIS6 Bridget Networking Driver"
 
 
+### Exec shell
 
+Kitematic uses sh for the Exec function. This can cause unwanted behavior, such as up arrows being displayed as '^[[A' in Powershell terminal. This is unavoidable, because not all docker containers have a bash shell (or csh, zsh, etc.). One way to use the bash shell, which does not have these limitations, is simply to type "bash" into the terminal each time that a new session is started.
 
+If you want your bash shell to be the default shell for when you 'exec' into the container, then in Settings > Advanced, simply add an entry for SHELL with a value of /bin/bash. [[1]]( https://github.com/docker/kitematic/issues/1022)
+
+Note that Windows containers do not have sh so this. (Open issue: https://github.com/docker/kitematic/issues/2166).
 
 ### 403 Errors
 
