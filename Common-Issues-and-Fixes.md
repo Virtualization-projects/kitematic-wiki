@@ -92,6 +92,7 @@ You will find something like this:
 > ...
 
 The above indicates that Lavasoft was preventing Kitematic from starting properly.
+_corresponding thread: https://github.com/docker/kitematic/issues/2076#issuecomment-276613251_
 
 ### Exec shell
 
