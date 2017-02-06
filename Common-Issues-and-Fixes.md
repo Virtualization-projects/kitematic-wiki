@@ -68,6 +68,30 @@ TL;DR:
 3. Right click your Virtualbox host-only adapter and select Properties
 4. Enable "Virtualbox NDIS6 Bridget Networking Driver"
 
+### Windows and Anti-virus software (thanks @wildloop)
+The following software have been to block Kitematic from starting:
+
+- Antivirus/Ad-Aware - lavasoft.com:
+    - LavasoftTcpService `C:\Program Files (x86)\Lavasoft\Web Companion\TcpService\2.3.4.7\LavasoftTcpService.exe`
+    - WebCompanion `C:\Program Files (x86)\Lavasoft\Web Companion\Application\WebCompanion.exe`
+- cryptoCertum Scanner - certum.pl: `C:\Program Files (x86)\Unizeto\proCertum CardManager\cryptoCertumScanner.exe`
+
+You can easily identify the software blocking Kitematic, but going through a process monitor and examining your logs:
+
+- download and unzip [Process Monitor](https://technet.microsoft.com/en-us/sysinternals/processmonitor.aspx) 
+- stop any program that you don't need at this moment (to avoid hype)
+- run Process Monitor and start capturing all events
+- run Kitematic and wait for about 15 seconds
+- stop capturing (magnifier icon)
+- analyse logs... (use excluding/including filters, ctrl+f,...)
+
+You will find something like this:
+
+> Kitematic.exe, Operation: ReadFile, Path: C:\Windows\System32\LavasoftTcpService64.dll
+> Kitematic.exe, Operation: ReadFile, Path: C:\Program Files (x86)\Lavasoft\Web Companion\TcpService\2.3.4.7\LavasoftTcpService.exe
+> ...
+
+The above indicates that Lavasoft was preventing Kitematic from starting properly.
 
 ### Exec shell
 
