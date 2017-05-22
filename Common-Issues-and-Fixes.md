@@ -39,6 +39,10 @@ _If none of you vboxnet have the proper setup, you can change the one that your 
 
 If you've enabled SSH Multiplexing, it might be the cause of this problem.  As pointed out [in this GitHub issue](https://github.com/kitematic/kitematic/issues/386#issuecomment-130421161) disabling multiplexing for localhost resolved the issue for some people.
 
+**Virtual box port forwarding feature not working on windows - cannot establish ssh connection**
+
+If you cannot establish any ssh communication between kitematic or docker-machine and the virtualbox VM then it could be that virtualbox port forwarding is not working. To test this try using telnet on the 127.0.0.1:PORT that is used by ssh (try running with the `docker-machine -D start default` debug command argument to see the failing ssh calls) and you should see the connection is blocked. If you inspect the virtualbox machine logs you will see "unknown error" in the port forwarding section. Often this is caused by unsigned drivers in the networking stack from networking software such as proxy interception. The easiest solution is uninstall the corresponding application with unsigned drivers.
+
 ### Windows 10
 
 Virtualbox seems to have a bug in Windows 10 and host-only adapter (mentioned above), a fix/patch exists at the following location: [Windows host-only adapter creation fails due to slow background processing](https://www.virtualbox.org/ticket/14040) - The latest Windows 10 build is causing that the Virtualbox Host Only adapter, is not checking the "Virtualbox NDIS6 Bridged Networking Driver" so the default machine cannot start properly.
