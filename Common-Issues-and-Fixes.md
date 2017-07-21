@@ -156,3 +156,5 @@ By default the VM is created with 20GB of disk space. If you would like to creat
 - You need to run to PowerShell command
 
 `Set-ItemProperty -Path 'HKLM:SOFTWARE\Microsoft\Windows NT\CurrentVersion\Virtualization\Containers' -Name VSmbDisableOplocks -Type DWord -Value 1 -Force`
+
+_(source: https://github.com/Sharkrit/Windows10init/tree/master#install-docker-community-edition-on-windows-10-for-support-windows-container)_
