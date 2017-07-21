@@ -141,3 +141,18 @@ Move to: [Common Proxy issues & Fixes](https://github.com/kitematic/kitematic/wi
 By default the VM is created with 20GB of disk space. If you would like to create a VM with more disk space, the following command will do just that and create a 100GB VM:
 
 `docker-machine -D create -d virtualbox --virtualbox-disk-size "100000" default`
+
+### Windows ProcessBaseLayer error:
+- TIPS: If enabled BitLocker with "Deny write access to fixed drives not protected by BitLocker" and this error message
+`failed to register layer: re-exec error: exit status 1: output: ProcessBaseLayer C:\ProgramData\Docker The I/O operation has been aborted because of either a thread exit or an application request.`
+
+- You need to run to PowerShell command
+
+`Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Policies\Microsoft\FVE" -Name FDVDenyWriteAccess -Value 0`
+
+- TIPS: Docker deamon cannot start run pulled images, with error message;
+
+`re-exec error: exit status 1: output: ProcessBaseLayer C:\ProgramData\Docker\windowsfilter The system cannot find the path specified.`
+- You need to run to PowerShell command
+
+`Set-ItemProperty -Path 'HKLM:SOFTWARE\Microsoft\Windows NT\CurrentVersion\Virtualization\Containers' -Name VSmbDisableOplocks -Type DWord -Value 1 -Force`
